@@ -1,0 +1,53 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+
+# Logs and temp files
+*.log
+*.tmp
+*.DS_Store
+
+
+# Environment files
+.env
+.venv/
+env/
+venv/
+*.env
+
+# Model files (large and not needed for codebase)
+models/*.pt
+models/*.bin
+models/*.h5
+
+# Transformers cache (auto-downloaded files)
+~/.cache/huggingface/
+~/.cache/torch/
+
+# Data files you don’t want on GitHub
+*.csv
+*.xlsx
+*.json
+*.tsv
+
+# Streamlit state or auto-generated stuff
+.streamlit/
+**/.streamlit/
+
+# Images or assets not needed for core app
+assets/
+*.png
+
+# VSCode project settings (optional)
+.vscode/
+
+# System files
+Thumbs.db
+desktop.ini
+
+# Git-generated conflict files
+*.orig
+
+# Mac system file
+.DS_Store
