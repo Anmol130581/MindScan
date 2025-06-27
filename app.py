@@ -3,7 +3,7 @@ import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModel
 from PIL import Image
-
+import os
 
 #  Page Config 
 st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
@@ -11,12 +11,28 @@ st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
 #  Loading Model and Tokenizer
 @st.cache_resource
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained("models/bert_emotion_tokenizer")
+    
+    try:
+        # Try local tokenizer first
+        if os.path.exists("models/bert_emotion_tokenizer"):
+            tokenizer = AutoTokenizer.from_pretrained("models/bert_emotion_tokenizer")
+        else:
+            raise FileNotFoundError
+
+    except Exception as e:
+        st.warning("⚠️ Local tokenizer not found. Falling back to HuggingFace model.")
+        tokenizer = AutoTokenizer.from_pretrained("bhadresh-savani/bert-base-go-emotion")
+
+    # Load BERT backbone
     bert = AutoModel.from_pretrained("bhadresh-savani/bert-base-go-emotion")
+
+    # Define and load custom classifier
     model = BERTClassifier(bert)
     model.load_state_dict(torch.load("models/bert_emotion_model.pt", map_location="cpu"))
     model.eval()
+
     return model, tokenizer
+
 
 class BERTClassifier(torch.nn.Module):
     def __init__(self, bert):
