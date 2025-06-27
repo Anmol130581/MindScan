@@ -1,10 +1,8 @@
 streamlit==1.35.0
-torch
+torch==2.1.0
 transformers==4.41.1
-scikit-learn==1.4.2
+scikit-learn==1.3.2
+numpy==1.24.4
 pandas==2.2.2
-numpy==1.26.4
-tqdm==4.66.4
-Pillow==10.3.0
-tokenizers==0.19.1
-
+tqdm
+Pillow
