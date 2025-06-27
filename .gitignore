@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *.ipynb_checkpoints/
 
+models/bert_emotion_model.pt
 # Logs and temp files
 *.log
 *.tmp
