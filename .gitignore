@@ -17,7 +17,7 @@ venv/
 *.env
 
 # Model files (large and not needed for codebase)
-
+models/*.pt
 models/*.bin
 models/*.h5
 

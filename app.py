@@ -4,33 +4,33 @@ import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModel
 from PIL import Image
 import os
-
+import urllib.request
 #  Page Config 
 st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
+
+
+
+def download_model_if_needed():
+    model_path = "models/bert_emotion_model.pt"
+    if not os.path.exists(model_path):
+        os.makedirs("models", exist_ok=True)
+        url = "https://drive.google.com/uc?export=download&id=1vi-SeT_zUUg3so7BomcAwuwKg-hmcng2"
+        print(" Downloading model...")
+        urllib.request.urlretrieve(url, model_path)
+        print(" Model downloaded.")
 
 #  Loading Model and Tokenizer
 @st.cache_resource
 def load_model():
     
-    try:
-        # Try local tokenizer first
-        if os.path.exists("models/bert_emotion_tokenizer"):
-            tokenizer = AutoTokenizer.from_pretrained("models/bert_emotion_tokenizer")
-        else:
-            raise FileNotFoundError
+    download_model_if_needed()  # <-- new line
 
-    except Exception as e:
-        st.warning("⚠️ Local tokenizer not found. Falling back to HuggingFace model.")
-        tokenizer = AutoTokenizer.from_pretrained("bhadresh-savani/bert-base-go-emotion")
-
-    # Load BERT backbone
+    tokenizer = AutoTokenizer.from_pretrained("bhadresh-savani/bert-base-go-emotion")
     bert = AutoModel.from_pretrained("bhadresh-savani/bert-base-go-emotion")
 
-    # Define and load custom classifier
     model = BERTClassifier(bert)
     model.load_state_dict(torch.load("models/bert_emotion_model.pt", map_location="cpu"))
     model.eval()
-
     return model, tokenizer
 
 
