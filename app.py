@@ -121,11 +121,11 @@ elif st.session_state.step == 2:
     st.subheader("Self-Reflection")
 
     open_qs = [
-        "** 1. Describe how you've been feeling emotionally lately.**",
-        "** 2. Is there something that's been bothering you for a while?**",
-        "** 3. What do you usually do when you're feeling low?**",
-        "** 4. Tell me about your sleep and energy levels recently.**",
-        "** 5. Do you feel hopeful or hopeless about the future?**"
+        "**1. Describe how you've been feeling emotionally lately.**",
+        "**2. Is there something that's been bothering you for a while?**",
+        "**3. What do you usually do when you're feeling low?**",
+        "**4. Tell me about your sleep and energy levels recently.**",
+        "**5. Do you feel hopeful or hopeless about the future?**"
     ]
 
     form = st.form("open_text_form")
