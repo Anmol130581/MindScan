@@ -21,7 +21,7 @@ def download_model_if_needed():
         url = "https://drive.google.com/uc?id=1vi-SeT_zUUg3so7BomcAwuwKg-hmcng2"
         with st.spinner("Downloading model from Google Drive (may take ~1 minute)..."):
             gdown.download(url, model_path, quiet=False)
-        st.success(" Model downloaded successfully!")
+        
 
 #  Loading Model and Tokenizer
 @st.cache_resource
