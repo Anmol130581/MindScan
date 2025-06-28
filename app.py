@@ -65,8 +65,9 @@ def predict_depression(text):
 
 #  Interpretation 
 def interpret_emotion(score):
-    if score >= 0.8: return "😞 Very low mood and signs of severe distress"
-    elif score >= 0.6: return "😕 Slightly low energy, occasional stress"
+    if score >= 0.8: return " Very low mood and signs of severe distress"
+    elif score >= 0.7: return " Low mood with significant emotional fatigue"
+    elif score >= 0.6: return " Slightly low energy, occasional stress"
     elif score >= 0.4: return "🙂 Fairly stable mood with minor concerns"
     else: return "😊 Positive and emotionally balanced"
 
@@ -74,7 +75,7 @@ def interpret_tone(score):
     if score >= 75: return "Distressed and emotionally overwhelmed"
     elif score >= 60: return "Fatigued and struggling emotionally"
     elif score >= 40: return "Some emotional fatigue or uncertainty"
-    elif score < 10: return "Not Enough Data to Analyze"
+    elif score <= 10: return "Not Enough Data to Analyze"
     else: return "Calm and generally stable"
 
 def suggest(score):
