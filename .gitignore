@@ -38,7 +38,7 @@ models/*.h5
 
 # Images or assets not needed for core app
 assets/
-*.png
+
 
 # VSCode project settings (optional)
 .vscode/
