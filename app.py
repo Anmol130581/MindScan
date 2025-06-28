@@ -74,11 +74,14 @@ def interpret_tone(score):
     if score >= 75: return "Distressed and emotionally overwhelmed"
     elif score >= 60: return "Fatigued and struggling emotionally"
     elif score >= 40: return "Some emotional fatigue or uncertainty"
+    elif score < 10: return "Not Enough Data to Analyze"
     else: return "Calm and generally stable"
 
 def suggest(score):
     if score >= 75: return "💡 It's strongly recommended you talk to a professional."
+    elif score >= 60: return "💬 Consider reaching out to a trusted friend or family member."
     elif score >= 50: return "💬 Some signs of concern. Consider opening up to someone."
+    elif score >= 40: return "💬 Reflect on your feelings and consider journaling." 
     else: return "✅ You seem to be doing well. Stay mindful."
 
 #  Session State Setup 
@@ -147,7 +150,7 @@ elif st.session_state.step == 2:
         "**2. Is there something that's been bothering you for a while?**",
         "**3. What do you usually do when you're feeling low?**",
         "**4. Tell me about your sleep and energy levels recently.**",
-        "**5. Do you feel hopeful or hopeless about the future?**"
+        "**5. When you think about the future, do you feel confident or uncertain?**"
     ]
 
     form = st.form("open_text_form")
@@ -181,19 +184,18 @@ elif st.session_state.step == 3:
     else: risk = "🟢 Low Risk"
 
     st.markdown("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    st.markdown("### 🧠 Your Personalized Mental Health Check-In 💬")
+    st.markdown("###  Your Personalized Mental Health Check-In ")
     st.markdown("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
     st.markdown(f"""
-**📋 Self-Assessment (10 Questions):**  
+**📋 Self-Assessment :**  
 → Score: **{obj_score}** out of 50  
 → Mood Pattern: {mood}
 """)
 
     st.markdown(f"""
-**🧾 AI Reflection (Your responses in your own words):**  
+**🧾 AI Reflection :**  
 → Emotional tone: **{tone}**  
-→ Depression Indicator Score: **{text_pct} / 100**
 """)
 
     st.markdown(f"""
