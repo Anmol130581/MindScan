@@ -10,7 +10,7 @@ import openai
 import streamlit as st
 from Chat_Assistant import chat_bot
 import streamlit as st
-from streamlit_extras.chat_message import message
+
 
 #  Page Config 
 st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
@@ -222,12 +222,20 @@ st.warning(" **Disclaimer:** MindCare AI is not a licensed therapist. It's here 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Display chat history with avatars (Streamlit Extras)
 for chat in st.session_state.chat_history:
     if chat["role"] == "user":
-        message(chat["content"], is_user=True, avatar_style="big-smile")
+        st.markdown(f"""
+            <div style='background-color:#d1ecf1; padding:10px 15px; border-radius:10px; margin:10px 0; text-align:left'>
+                <strong>🧑 You:</strong><br>{chat['content']}
+            </div>
+        """, unsafe_allow_html=True)
     else:
-        message(chat["content"], is_user=False, avatar_style="bottts")
+        st.markdown(f"""
+            <div style='background-color:#f8d7da; padding:10px 15px; border-radius:10px; margin:10px 0; text-align:left'>
+                <strong>🤖 MindCare AI:</strong><br>{chat['content']}
+            </div>
+        """, unsafe_allow_html=True)
+
 
 # Chat input box
 user_input = st.chat_input("Ask MindCare AI anything...")
