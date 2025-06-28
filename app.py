@@ -6,16 +6,14 @@ from PIL import Image
 import os
 import urllib.request
 import gdown
-import openai
 import streamlit as st
-from Chat_Assistant import chat_bot
-import streamlit as st
+
 
 
 #  Page Config 
 st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 
 import gdown
 
@@ -211,38 +209,4 @@ elif st.session_state.step == 3:
 You're not alone. You're doing your best, and that matters.
 """)
     st.markdown("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-
-st.markdown("---")
-st.subheader(" Talk to MindCare AI – Your Emotional Companion")
-st.markdown("Need someone to talk to? MindCare AI is here to provide supportive, kind, and practical advice.")
-
-st.warning(" **Disclaimer:** MindCare AI is not a licensed therapist. It's here to offer emotional support only. If you're feeling unsafe, please seek professional help or call a helpline.")
-
-# Initialize session state
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
-for chat in st.session_state.chat_history:
-    if chat["role"] == "user":
-        st.markdown(f"""
-            <div style='background-color:#d1ecf1; padding:10px 15px; border-radius:10px; margin:10px 0; text-align:left'>
-                <strong>🧑 You:</strong><br>{chat['content']}
-            </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown(f"""
-            <div style='background-color:#f8d7da; padding:10px 15px; border-radius:10px; margin:10px 0; text-align:left'>
-                <strong>🤖 MindCare AI:</strong><br>{chat['content']}
-            </div>
-        """, unsafe_allow_html=True)
-
-
-# Chat input box
-user_input = st.chat_input("Ask MindCare AI anything...")
-
-if user_input:
-    st.session_state.chat_history.append({"role": "user", "content": user_input})
-    with st.spinner("MindCare AI is typing..."):
-        ai_reply = chat_bot(st.session_state.chat_history)
-        st.session_state.chat_history.append({"role": "assistant", "content": ai_reply})
-        st.experimental_rerun()
+    
