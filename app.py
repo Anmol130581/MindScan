@@ -75,7 +75,7 @@ def interpret_tone(score):
     if score >= 75: return "Distressed and emotionally overwhelmed"
     elif score >= 60: return "Fatigued and struggling emotionally"
     elif score >= 40: return "Some emotional fatigue or uncertainty"
-    elif score <= 10: return "Not Enough Data to Analyze"
+    elif score <= 20: return "Not Enough Data to Analyze"
     else: return "Calm and generally stable"
 
 def suggest(score):
