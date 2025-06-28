@@ -91,7 +91,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
     st.write("")
 with col2:
-    image = Image.open("Data/MIND_SCAN.png")  
+    image = Image.open("MIND_SCAN.png")  
     st.image(image, use_column_width=True)
 with col3:
     st.write("")
