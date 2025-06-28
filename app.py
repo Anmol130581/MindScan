@@ -5,19 +5,23 @@ from transformers import AutoTokenizer, AutoModel
 from PIL import Image
 import os
 import urllib.request
+import gdown
+
 #  Page Config 
 st.set_page_config(page_title="MindScan - Depression Check", layout="centered")
 
 
 
+import gdown
+
 def download_model_if_needed():
     model_path = "models/bert_emotion_model.pt"
-    if not os.path.exists(model_path):
+    if not os.path.exists(model_path) or os.path.getsize(model_path) < 10_000_000:
         os.makedirs("models", exist_ok=True)
-        url = "https://drive.google.com/uc?export=download&id=1vi-SeT_zUUg3so7BomcAwuwKg-hmcng2"
-        print(" Downloading model...")
-        urllib.request.urlretrieve(url, model_path)
-        print(" Model downloaded.")
+        url = "https://drive.google.com/uc?id=1vi-SeT_zUUg3so7BomcAwuwKg-hmcng2"
+        with st.spinner("Downloading model from Google Drive (may take ~1 minute)..."):
+            gdown.download(url, model_path, quiet=False)
+        st.success(" Model downloaded successfully!")
 
 #  Loading Model and Tokenizer
 @st.cache_resource
