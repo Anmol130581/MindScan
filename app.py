@@ -23,8 +23,7 @@ def download_model_if_needed():
 @st.cache_resource
 def load_model():
     
-    download_model_if_needed()  # <-- new line
-
+    download_model_if_needed()  
     tokenizer = AutoTokenizer.from_pretrained("bhadresh-savani/bert-base-go-emotion")
     bert = AutoModel.from_pretrained("bhadresh-savani/bert-base-go-emotion")
 
@@ -88,7 +87,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
     st.write("")
 with col2:
-    image = Image.open("Data/MIND_SCAN.png")  # Make sure image is in same dir or give full path
+    image = Image.open("Data/MIND_SCAN.png")  
     st.image(image, use_column_width=True)
 with col3:
     st.write("")
